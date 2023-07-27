@@ -136,6 +136,10 @@ class SingleLinkList {
     }
 
     //remove Pseudocode
+    //return undefined if the index is less then zero or greater then or equal the the size of the linked list
+    //use shift if the index is equal to zero
+    //use the pop if the index is equal to this.size-1
+
 
     remove(index) {
         if (index < 0 || index > this.size) return undefined
@@ -148,6 +152,37 @@ class SingleLinkList {
         return removed
     }
 
+
+    //Reverse PseudoCode
+
+    reverse() {
+
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        let next;
+        let prev = null
+
+        for (let i = 0; i < this.size; i++) {
+            next = node.next
+            node.next = prev
+            prev = node
+            node = next
+        }
+    }
+
+    print(){
+        const arr=[]
+        let current=this.head
+        while(current){
+
+            arr.push(current.val)
+            current=current.next
+
+        }
+        console.log("print list",arr)
+    }
 }
 
 const list = new SingleLinkList()
@@ -162,6 +197,11 @@ console.log("shiftedItem", shiftedItem)
 
 list.unshift(4)
 list.push(2)
+list.remove(2)
+list.reverse()
+list.print()
+
+
 
 const itemFromGetFunc = list.get(2)
 console.log("item thru get", itemFromGetFunc)
