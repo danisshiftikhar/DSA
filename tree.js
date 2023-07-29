@@ -72,6 +72,58 @@ class BST {
             }
         }
     }
+
+    BFS() {
+
+        let node = this.root,
+            data = [],
+            queue = []
+        queue.push(node)
+
+        while(queue.length){
+            node=queue.shift()
+            data.push(node.val)
+            if(node.left)queue.push(node.left)
+            if(node.right)queue.push(node.right)
+        }
+        return data
+    }
+
+    DFSPreOrder(){
+        var data=[]
+
+        function traverse(node) {
+            data.push(node.val )
+            if(node.left)traverse(node.left)
+            if(node.right)traverse(node.right)
+        }
+        traverse(this.root)
+        return data
+    }
+
+    DFSPostOrder(){
+        var data=[]
+
+        function traverse(node) {
+            if(node.left)traverse(node.left)
+            if(node.right)traverse(node.right)
+            data.push(node.val )
+        }
+        traverse(this.root)
+        return data
+    }
+
+    DFSInOrder(){
+        var data=[]
+
+        function traverse(node) {
+            if(node.left)traverse(node.left)
+            data.push(node.val )
+            if(node.right)traverse(node.right)
+        }
+        traverse(this.root)
+        return data
+    }
 }
 
 const tree = new BST()
@@ -79,10 +131,20 @@ tree.insert(10)
 tree.insert(3)
 tree.insert(11)
 tree.insert(5)
-
-
 console.log("tree", tree)
-
 let found = tree.find(16)
-
 console.log("found", found)
+
+
+// tree traversal
+const bfs=tree.BFS()
+console.log("bfs",bfs)
+
+const dfsPreorder=tree.DFSPreOrder()
+console.log("dfsPreOrder",dfsPreorder)
+
+const dfsPostOrder=tree.DFSPostOrder()
+console.log("dfsPostOrder",dfsPostOrder)
+
+const dfsInOrder=tree.DFSInOrder()
+console.log("dfsInOrder",dfsInOrder)
